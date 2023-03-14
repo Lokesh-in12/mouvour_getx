@@ -39,6 +39,7 @@ dependencies:
   go_router: ^6.2.0
   get: ^4.6.5
   dio: ^5.0.2
+  loader_skeleton: ^0.0.4
 
 dev_dependencies:
   flutter_test:

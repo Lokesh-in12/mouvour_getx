@@ -20,6 +20,10 @@ class HomePage extends StatelessWidget {
     print(themeController.isDark.value);
     return Obx(() {
       if (moviesController.isLoading.value) {
+        // return Scaffold(
+        //   backgroundColor: Colors.white,
+        //   body: Ske,
+        // );
         return Scaffold(
           backgroundColor: Colors.white,
           body: Center(child: CircularProgressIndicator()),
@@ -27,7 +31,7 @@ class HomePage extends StatelessWidget {
       } else {
         return Scaffold(
           backgroundColor: themeController.isDark.value
-              ? Color.fromARGB(115, 54, 54, 54)
+              ? Color.fromARGB(193, 19, 19, 19)
               : Colors.white,
           appBar: AppBar(
             backgroundColor: themeController.isDark.value
@@ -36,6 +40,8 @@ class HomePage extends StatelessWidget {
             title: Text("Mouvour"),
           ),
           drawer: Drawer(
+            backgroundColor:
+                themeController.isDark.value ? Color.fromARGB(255, 0, 0, 0) : Color.fromARGB(255, 255, 255, 255),
             child: SafeArea(
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
@@ -50,12 +56,16 @@ class HomePage extends StatelessWidget {
                             children: <Widget>[
                               Icon(themeController.isDark.value
                                   ? Icons.sunny
-                                  : Icons.dark_mode),
+                                  : Icons.dark_mode,color: themeController.isDark.value
+                                          ? Colors.white
+                                          : Colors.black),
                               SizedBox(
                                 width: 10,
                               ),
                               Text(
-                                  "Switch to ${themeController.isDark.value ? "light" : "dark"} mode")
+                                  "Switch to ${themeController.isDark.value ? "light" : "dark"} mode",style: TextStyle(color: themeController.isDark.value
+                                          ? Colors.white
+                                          : Colors.black),)
                             ],
                           ),
                         )

@@ -54,7 +54,7 @@ class MoviesController extends GetxController {
     } catch (err) {
       print("error caused in moviesController is =>> ${err}");
     } finally {
-      Future.delayed(Duration(seconds: 5));
+      await Future.delayed(Duration(seconds: 4));
       isLoading(false);
       print("done");
     }

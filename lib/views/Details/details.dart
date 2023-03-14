@@ -32,7 +32,13 @@ class _DetailsPageState extends State<DetailsPage> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration.zero, () => handleApiCall(widget.id!));
+
+    Future.delayed(Duration(microseconds:5 ), () {
+      singleMovieController.SimilarMovies.clear();
+      singleMovieController.SingleMovieCasts.clear();
+      singleMovieController.SimilarMovies.clear();
+      handleApiCall(widget.id!);
+    });
   }
 
   void handleApiCall(id) async {
@@ -125,28 +131,35 @@ class _DetailsPageState extends State<DetailsPage> {
                               children: singleMovieController
                                   .SingleMovieData[0].genres!
                                   .map<Widget>((e) {
-                            return Container(
-                              width: 81,
-                              height: 25,
-                              decoration: BoxDecoration(
-                                color: Color.fromARGB(206, 238, 204, 202),
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Center(
-                                      child: Text(
-                                    maxLines: 1,
-                                    "${e.name.toString()}".toUpperCase(),
-                                    style: TextStyle(
-                                        fontSize: 11, color: Colors.black),
-                                  )),
-                                  SizedBox(
-                                    width: 5,
+                            return Row(
+                              children: [
+                                Container(
+                                  width: 95,
+                                  height: 25,
+                                  decoration: BoxDecoration(
+                                    color: Color.fromARGB(206, 238, 204, 202),
+                                    borderRadius: BorderRadius.circular(20),
                                   ),
-                                ],
-                              ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Center(
+                                          child: Text(
+                                        maxLines: 1,
+                                        "${e.name.toString()}".toUpperCase(),
+                                        style: TextStyle(
+                                            fontSize: 11, color: Colors.black),
+                                      )),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 8,
+                                )
+                              ],
                             );
                           }).toList()) ??
                           Text("Unavailable"),
@@ -305,7 +318,14 @@ class _DetailsPageState extends State<DetailsPage> {
                                                   backgroundImage: NetworkImage(
                                                       "${Consts.IMG}${e.profilePath}"),
                                                 ),
-                                                Text("${e.name.toString()}")
+                                                Text(
+                                                  "${e.name.toString()}",
+                                                  style: TextStyle(
+                                                      color: themeController
+                                                              .isDark.value
+                                                          ? Colors.white
+                                                          : Colors.black),
+                                                )
                                               ],
                                             )
                                           : Column(
